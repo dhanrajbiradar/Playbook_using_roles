@@ -1,0 +1,7 @@
+---
+- name: "copy hhtpd configuration file"
+  copy: 
+    src=file/httpd.conf 
+    dest=/etc/httpd/conf/httpd.conf
+  notify:
+  - reload apache

@@ -1,0 +1,4 @@
+- name: ensure list of packages to install
+  yum:
+    name: "{{packages}}"
+
