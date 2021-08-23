@@ -1,0 +1,23 @@
+---
+- name: play 1- Configure Apache for httpd
+  hosts: xyz
+  become: yes
+  roles:
+    - apache
+
+- name: play 2 - Configure Apache for httpd
+  hosts: xyz
+  become: yes
+  tasks:
+    - name: Remove file (delete file)
+      file:
+        path: /etc/httpd/conf.d/virtual.conf
+        state: absent
+      notify:
+        - reload apache
+
+    - name: copy the xyz.com code
+      copy:
+        src: /etc/ansible/xyz-com/index.html
+        dest: /var/www/html/index.html
+        owner: root
